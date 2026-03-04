@@ -1,0 +1,255 @@
+---
+title: "`filter()`"
+subtitle: '03/04/2026'
+author: ''
+format: 
+  html:
+    embed-resources: true
+    code-overflow: wrap
+execute:
+  error: true
+---
+
+```{r}
+#| message: false
+
+library(tidyverse)
+
+library(janitor)
+
+library(readxl)
+
+library(palmerpenguins)
+```
+
+### Import Data
+
+```{r}
+tortoise <- read_csv("https://raw.githubusercontent.com/ckaoxvii/CIS-351-2026-Spring/refs/heads/main/tortoise.csv")
+```
+
+### Format Column Names
+
+```{r}
+names(___)
+
+tortoise <- ___(tortoise)
+
+names(___)
+```
+
+:::{.callout-tip icon='false'}
+## Exercise 0.
+
+Examine the column names of the `tortoise` data frame. Do you notice any typographical errors?
+
+_**Solution.**_
+
+`lattitude_n` is misspelled. We can use the `rename()` function to correct this error.
+
+```{r}
+tortoise <- rename(___)
+
+names(___)
+```
+:::
+
+:::{.callout-important icon='false'}
+## Variable Name Conflict
+
+Note that the variable name `tortoise` is used both as the name of the data frame and as the column that identifies an individual tortoise. In general, this practice should be avoided to prevent confusion between the data frame and the column.
+
+To mitigate this issue, we will rename the `tortoise` column as `tortoise_id` using `rename()`.
+
+```{r}
+tortoise <- rename(___)
+
+names(___)
+```
+:::
+
+### Basic Data Exploration
+
+```{r}
+str(___)
+```
+:::{.callout-caution icon='false'}
+## `unique()` and `n_distinct()`
+
+* The `unique()` function is useful for listing distinct values in a vector or a column of a data frame.
+* The `n_distinct()` function returns the number of distinct values in a vector or a column of a data frame.
+:::
+
+:::{.callout-note icon='false'}
+## Example 1.
+
+Use `unique()` to identify the distinct values in the `site` column of `tortoise`, then use `n_distict()` to determine how many distinct values `site` contains.
+
+_**Solution.**_
+
+```{r}
+unique(___)
+
+n_distinct(___)
+```
+:::
+
+:::{.callout-tip icon='false'}
+## Exercise 1.
+
+a. Find the unique values in the columns `tortoise_id`, `sex`, and `class` of `tortoise`.
+b. Find the number of distinct values in the columns from part a.
+
+_**Solution.**_
+
+a.
+```{r}
+```
+
+b.
+```{r}
+```
+:::
+
+:::{.callout-}
+
+:::{.callout-note icon='false'}
+## Example 2.
+
+Calculate the descriptive statistics for `mass_g` and summary of `class`.
+
+```{r}
+summary(___)
+```
+
+```{r}
+table(___)
+```
+:::
+
+:::{.callout-tip icon='false'}
+## Exercise 2.
+
+Calculate the descriptive statistics of `carapace_width_mm` and summary of `sex` columns.
+
+```{r}
+```
+
+```{r}
+```
+:::
+
+:::{.callout-caution icon='false'}
+## `map()`
+
+The `map()` function lets you apply a function across an entire data frame. The syntax is `map(.data, .f)`, where `.data` is the data frame and `.f` is the function to apply.
+
+_Note:_ The `map()` function is provided by the `{tidyverse}` (via `{purrr}`) package. 
+:::
+
+:::{.callout-note icon='false'}
+## Example 3.
+
+a. Identify the distinct values in each column of `tortoise`.
+b. Determine the number of distinct values in all columns of `tortoise`.
+
+_**Solutions.**_
+
+a.
+```{r}
+map(___)
+```
+
+b. 
+```{r}
+map(___)
+```
+:::
+
+### `filter()`
+
+:::{.callout-caution icon='false'}
+## `filter()`
+
+The `filter()` function keeps only the rows of a data frame that satisfy specified logical conditions. The syntax is `filter(.data, ...)`, where `.data` is the data frame and `...` represents one or more logical expressions.
+:::
+
+:::{.callout-note icon='false'}
+## Example 4. 
+
+a. Subset out the tortoises from the Dunes site.
+b. Subset out the tortoises whose mass is greater than 500 g.
+c. Subset out all the adult male tortoises.
+
+_**Solutions.**_
+
+a. 
+```{r}
+tortoise_dunes <- filter(___)
+
+unique(___) # check that Dunes is the only value in `site` column.
+```
+
+b.
+```{r}
+tortoise_heavy <- filter(___)
+
+unique(___)
+```
+
+c.
+```{r}
+tortoise_adult_male <- filter(___)
+
+___
+```
+:::
+
+:::{.callout-tip icon='false'}
+## Exercise 3.
+
+a. Subset out the tortoises from Peninsula site.
+b. Subset out the tortoises whose straight carapace length is less than 150 mm or greater than 200 mm.
+c. Subset out the juvenile tortoises with a tick count greater than 5.
+d. Create a data frame that contains only the non-juvenile tortoises.
+
+
+_**Solutions.**_
+
+a.
+```{r}
+```
+
+b.
+```{r}
+```
+
+c.
+```{r}
+```
+
+d.
+```{r}
+```
+:::
+
+:::{.callout-note icon='false'}
+## Exercise 4.
+
+Filter out rows where the patient is deceased and the year was before 2012.
+
+```{r}
+patients <- tibble(
+  name = c("Anne", "Mark", "Sarah", "Davis", "Max", "Derek", "Tina"),
+  deceased = c(FALSE, TRUE, NA, TRUE, NA, FALSE, TRUE),
+  date = c(2005, 2010, NA, 2020, 2010, NA, NA)
+)
+
+patients
+```
+
+_**Solution.**_ 
+
+```{r}
+```
+:::
