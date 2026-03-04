@@ -1,0 +1,204 @@
+---
+title: "`filter()`"
+subtitle: '03/04/2026'
+author: ''
+format: 
+  html:
+    embed-resources: true
+---
+
+```{r}
+#| message: false
+
+library(tidyverse)
+
+library(janitor)
+
+library(readxl)
+
+library(palmerpenguins)
+```
+
+### Import Data
+
+```{r}
+tortoise <- read_csv("https://raw.githubusercontent.com/ckaoxvii/CIS-351-2026-Spring/refs/heads/main/tortoise.csv")
+```
+
+### Format Column Names
+
+```{r}
+names(___)
+
+tortoise <- ___(tortoise)
+
+names(___)
+```
+
+:::{.callout-tip icon='false'}
+## Exercise 0.
+
+Examine the column names of the `tortoise` data frame. Do you notice any typographical errors?
+
+_**Solution.**_
+
+`lattitude_n` is misspelled. We can use the `rename()` function to correct this error.
+
+```{r}
+tortoise <- rename(___, ___)
+
+names(___)
+```
+:::
+
+### Basic Data Exploration
+
+```{r}
+str(___)
+```
+:::{.callout-caution icon='false'}
+## `unique()`
+
+The `unique()` function is useful for listing distinct values in a vector or a column of a data frame.
+:::
+
+:::{.callout-note icon='false'}
+## Example 1.
+
+Use `unique()` to determine the distinct values in the `site` column of `tortoise`.
+
+_**Solution.**_
+
+```{r}
+unique(___)
+```
+:::
+
+:::{.callout-tip icon='false'}
+## Exercise 1.
+
+Find the unique values in the remaining columns of `tortoise`.
+
+_**Solution.**_
+
+```{r}
+
+```
+:::
+
+:::{.callout-note icon='false'}
+## Example 2.
+
+Calculate the descriptive statistics for `mass_g` and summary of `class`.
+
+```{r}
+summary(___)
+```
+
+```{r}
+___(tortoise$class)
+```
+:::
+
+:::{.callout-tip icon='false'}
+## Exercise 2.
+
+Calculate the descriptive statistics of the remaining numeric variables and summarize character variables in `tortoise`.
+
+```{r}
+
+```
+:::
+
+### `filter()`
+
+:::{.callout-caution icon='false'}
+## `filter()`
+
+The `filter()` function keeps the rows of a data frame that satisfy certain logical conditions. The syntax is `filter(.data, ...)`, where `.data` is a data frame and `...` logical expressions.
+:::
+
+:::{.callout-note icon='false'}
+## Example 3.
+
+a. Subset out the tortoises from the Dunes site.
+b. Subset out the tortoises whose mass is greater than 500 g.
+c. Subset out all the adult male tortoises.
+
+_**Solutions.**_
+
+a. 
+```{r}
+tortoise_dunes <- filter(___)
+
+___(tortoise_dunes$site) # check that Dunes is the only value in `site` column.
+```
+
+b.
+```{r}
+tortoise_heavy <- filter(___)
+
+___(tortoise_heavy$mass_g)
+```
+
+c.
+```{r}
+tortoise_adult_male <- filter(___)
+
+___jk
+```
+:::
+
+:::{.callout-tip icon='false'}
+## Exercise 3.
+
+a. Subset out the tortoises from Peninsula site.
+b. Subset out the tortoises whose straight carapace length is less than 150 mm or greater than 200 mm.
+c. Subset out the juvenile tortoises with a tick count greater than 5.
+d. Create a data frame that contains only the non-juvenile tortoises.
+
+
+_**Solutions.**_
+
+a.
+```{r}
+
+```
+
+b.
+```{r}
+
+```
+
+c.
+```{r}
+
+```
+
+d.
+```{r}
+
+```
+:::
+
+:::{.callout-note icon='false'}
+## Exercise 4.
+
+Filter out rows where the patient is deceased and the year was before 2012.
+
+```{r}
+patients <- tibble(
+  name = c("Anne", "Mark", "Sarah", "Davis", "Max", "Derek", "Tina"),
+  deceased = c(FALSE, TRUE, NA, TRUE, NA, FALSE, TRUE),
+  date = c(2005, 2010, NA, 2020, 2010, NA, NA)
+)
+
+patients
+```
+
+_**Solution.**_ 
+
+```{r}
+
+```
+:::
