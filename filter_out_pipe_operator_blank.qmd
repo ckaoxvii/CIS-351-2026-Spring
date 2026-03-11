@@ -1,0 +1,76 @@
+---
+title: "`filter_out()` and the Pipe Operator"
+subtitle: '03/11/2026'
+author: ''
+format: 
+  html:
+    embed-resources: true
+    code-overflow: wrap
+execute:
+  error: true
+---
+
+```{r}
+#| message: false
+
+library(tidyverse)
+
+library(janitor)
+
+library(readxl)
+
+library(palmerpenguins)
+```
+
+### Import Data
+
+```{r}
+tortoise <- read_csv("https://raw.githubusercontent.com/ckaoxvii/CIS-351-2026-Spring/refs/heads/main/tortoise.csv")
+
+patients <- tibble(
+  name = c("Anne", "Mark", "Sarah", "Davis", "Max", "Derek", "Tina"),
+  deceased = c(FALSE, TRUE, NA, TRUE, NA, FALSE, TRUE),
+  date = c(2005, 2010, NA, 2020, 2010, NA, NA)
+)
+```
+
+### Format Column Names
+
+```{r}
+```
+
+### The `filter_out()` Function
+
+The `filter_out()` function is the complement of the `filter()`, where `filter_out()` drops the rows that satisfy certain logical expressions instead of keeping them.
+
+:::{.callout-note icon='false'}
+## Example 1.
+
+Use `filter_out()` to remove the patients who were deceased before 2012.
+
+```{r}
+```
+:::
+
+:::{.callout-tip icon='false'}
+## Exercise 1.
+
+Use `filter_out()` to remove juvenile tortoises whose mass is below the mean mass of all tortoises.
+
+```{r}
+```
+:::
+
+### The Pipe Operator: `|>`
+
+The pipe operator `|>` lets us chain multiple functions or operations in sequence without using function composition notation.
+
+:::{.callout=note icon="false"}
+## Example 2.
+
+Select the `site`, `tortoise`, `class`, and `ticks_count` columns from `tortoise`. Then rename the `tortoise` column to `tortoise_id` and remove adult tortoises with a tick count greater than 5.
+
+_Method 1:_ Without using `|>`
+```{r}
+```
+:::
