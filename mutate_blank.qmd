@@ -1,0 +1,113 @@
+---
+title: "The `mutate()` Function"
+subtitle: '03/13/2026'
+author: ''
+format: 
+  html:
+    embed-resources: true
+    code-overflow: wrap
+execute:
+  error: true
+---
+
+```{r}
+#| message: false
+
+library(tidyverse)
+
+library(janitor)
+
+library(readxl)
+
+library(palmerpenguins)
+```
+
+### Import Data & Format Column Names
+
+```{r}
+tortoise <- read_csv("https://raw.githubusercontent.com/ckaoxvii/CIS-351-2026-Spring/refs/heads/main/tortoise.csv")
+
+tortoise <- tortoise |> 
+  ___() |> 
+  ___()
+
+names(tortoise)
+```
+
+```{r}
+patients <- tibble(
+  name = c("Anne", "Mark", "Sarah", "Davis", "Max", "Derek", "Tina"),
+  deceased = c(FALSE, TRUE, NA, TRUE, NA, FALSE, TRUE),
+  date = c(2005, 2010, NA, 2020, 2010, NA, NA)
+)
+```
+
+### The `mutate()` Function
+
+The `mutate()` function can be used to create new columns from existing columns in a data frame. The syntax is
+
+```r
+mutate(
+  .data,
+  ...,
+  .by = NULL,
+  .keep = c("call", "used", "unused", "none"),
+  .before = NULL,
+  .after = NULL
+)
+```
+
+#### 1. Create New Columns Using `mutate()`
+
+:::{.callout-note icon='false'}
+## Example 1.
+
+Create a new variable called `carapace_lw_ratio` by calculating the ratio of `straight_carapace_length_mm` to `carapace_width_mm` in the `tortoise` data frame.
+
+_Solution._
+
+```{r}
+tortoise_1 <- tortoise |> 
+  mutate()
+
+tortoise_1
+```
+:::
+
+#### 2. Creating A New Column by Group
+
+:::{.callout-note icon='false'}
+## Example 2.
+
+Create a new variable, `mass_ratio`, by calculating the ratio of each tortoise's mass to the mean mass of its class. Then reduce the data frame to include only the columns `site`, `tortoise_id`, `class`, and `mass_ratio`.
+
+_Solution._ 
+
+```{r}
+tortoise_2 <- tortoise |> 
+  mutate() 
+
+tortoise_2
+```
+:::
+
+#### 3. Working with Cases 
+
+An `if-else` statement is common in most programming languages. It allows users to execute different statements based on one or more conditions. In data analysis, it can be used to keep or drop rows, create or delete variables, or recode variables. The same is true in R. However, the `case_when()` function from the `{dplyr}` package makes `if-else` statements easier to write and read.
+
+:::{.callout-note icon='false'}
+## Example 3.
+
+Continuing from Example 2. Add a new variable, 'mass_class', defined as
+
+  * if the mass ratio is less than 1, then its mass class is 'light'
+  * if the mass ratio is equal to 1, then its mass class is 'average'
+  * if the mass ratio is greater than 1, then its mass class is 'heavy'
+
+```{r}
+tortoise_3 <- tortoise_2 |> 
+  mutate()
+
+tortoise_3
+```
+:::
