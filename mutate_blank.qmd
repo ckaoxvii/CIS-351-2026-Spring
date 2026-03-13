@@ -83,11 +83,28 @@ Create a new variable, `mass_ratio`, by calculating the ratio of each tortoise's
 
 _Solution._ 
 
+**Method 1.** Add `.by` inside `mutate()`.
 ```{r}
 tortoise_2 <- tortoise |> 
-  mutate() 
+  mutate()  
 
 tortoise_2
+```
+
+**Method 2.** Using `group_by()` before `mutate()`.
+
+```{r}
+tortoise_2a <- tortoise |> 
+  ___() |> 
+  mutate() |> 
+  ___() |> 
+  ___()
+
+tortoise_2a
+```
+
+_A quick sanity check:_
+```{r}
 ```
 :::
 
@@ -109,5 +126,22 @@ tortoise_3 <- tortoise_2 |>
   mutate()
 
 tortoise_3
+```
+:::
+
+:::{.callout-note icon='false'}
+## Example 4.
+
+Continuing from Example 3, recode the `mass_class` column by allowing small error in `mass_ratio` column:
+
+* if mass ratio is less than 0.95, then the mass class is 'light'
+* if mass ratio is greater than 1.05, then the mass class is 'heavy'
+* anything else is 'average'
+
+```{r}
+tortoise_4 <- tortoise_3 |> 
+  mutate()
+
+tortoise_4
 ```
 :::
