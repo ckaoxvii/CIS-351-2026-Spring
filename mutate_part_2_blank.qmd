@@ -1,0 +1,154 @@
+---
+title: "The `mutate()` Function and Additional Helper Functions"
+subtitle: '03/23/2026'
+author: ''
+format: 
+  html:
+    embed-resources: true
+    code-overflow: wrap
+execute:
+  error: true
+---
+
+```{r}
+#| message: false
+
+library(tidyverse)
+
+library(janitor)
+
+library(readxl)
+
+library(palmerpenguins)
+```
+
+### Import Data & Format Column Names
+
+```{r}
+tortoise <- read_csv("https://raw.githubusercontent.com/ckaoxvii/CIS-351-2026-Spring/refs/heads/main/tortoise.csv")
+
+tortoise <- tortoise |> 
+  clean_names() |> 
+  rename(tortoise_id = tortoise)
+
+names(tortoise)
+```
+
+```{r}
+patients <- tibble(
+  name = c("Anne", "Mark", "Sarah", "Davis", "Max", "Derek", "Tina"),
+  deceased = c(FALSE, TRUE, NA, TRUE, NA, FALSE, TRUE),
+  date = c(2005, 2010, NA, 2020, 2010, NA, NA)
+)
+```
+
+### Optional Arguments of the `mutate()` Function
+
+Recall the syntax for `mutate()` is as follows
+
+```r
+mutate(
+  .data,
+  ...,
+  .by = NULL,
+  .keep = c("all", "used", "unused", "none"),
+  .before = NULL,
+  .after = NULL
+)
+```
+
+In the previous class, we saw that the `.by` argument can be used to add or modify variables by group. We will explore the remaining optional arguments of `mutate()`.
+
+#### The `.keep` Option
+
+This option lets us control which columns we want to retain in the output.
+
+  * `"all"` retains all columns from `.data`; this is the default.
+  * `"used"` retains only the columns used in the `...` step(s) of `mutate()`. This is useful for checking your work.
+  * `"unused"` retains only the columns _not_ used in the `...` step(s) of `mutate()`. This is useful if new columns are generated, but the old columns used to generate the new ones are no longer needed.
+  * `"none"` retains only the new columns generated in the `...` step(s) of `mutate()`.
+
+:::{.callout-note icon="false"}
+## Example 1. 
+
+Use `mutate()` to create a new variable called `straight_carapace_l_cm`, then explore each of `.keep` options.
+
+```{r}
+tortoise_keep_all <- 
+
+names(tortoise_keep_all)
+```
+
+```{r}
+tortoise_keep_used <- 
+
+names(tortoise_keep_used)
+```
+
+```{r}
+tortoise_keep_unused <- 
+
+names(tortoise_keep_unused)
+```
+
+```{r}
+tortoise_keep_none <- 
+
+names(tortoise_keep_none)
+```
+:::
+
+#### The `.before` and `.after` Options
+
+These two optional arguments let us control the location of the new or modified column(s).
+
+:::{.callout-note icon='false'}
+## Example 2.
+
+Create the variable `carapace_lw_ratio` by calculating the ratio of `straight_carapace_length_mm` to `carapace_width_mm`. Then reposition `carapace_lw_ratio` to be after `carapace_width_mm`.
+
+_Solution._ Note that there are two ways of performing the relocation of `carapace_lw_ratio`, we can position it after `carapace_width_mm`, or before `height_mm`.
+
+_Method 1:_ Using '.after'
+```{r}
+tortoise_2a <- 
+
+names(tortoise_2a)
+```
+
+_Method 2:_ Using `.before`
+
+```{r}
+tortoise_2b <- 
+
+names(tortoise_2b)
+```
+
+```{r}
+names(tortoise_2a) == names(tortoise_2b)
+```
+:::
+
+## Useful Helper Functions
+
+The following are some useful helper functions from the `{dplyr}` and `{tidyselect}` packages that expand the capabilities of `filter()` and `mutate()`.
+
+* `across()`: Apply the same transformation to multiple columns.
+* `if_any()`: Select any columns when the predicate is `TRUE`.
+* `if_all()`: Select _all_ columns when the predicate is `TRUE`.
+* `starts_with()`: Starts with an exact prefix.
+* `ends_with()`: Ends with an exact suffix.
+* `contains()`: Contains a literal string.
+* `matches()`: Matches a regular expression.
+* `num_range()`: Matches a numerical range.
+
+:::{.callout-note icon='false'}
+In the `penguins` data frame, convert all columns measured in mm to meters.
+
+_Solution._
+```{r}
+penguins_meters <- 
+
+head(penguins_meters)
+```
+:::
