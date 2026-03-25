@@ -1,0 +1,157 @@
+---
+title: "The `summarize()` Function"
+subtitle: '03/25/2026'
+author: ''
+format: 
+  html:
+    embed-resources: true
+    code-overflow: wrap
+execute:
+  error: true
+---
+
+```{r}
+#| message: false
+
+library(tidyverse)
+
+library(janitor)
+
+library(readxl)
+
+library(palmerpenguins)
+
+library(tinytable)
+```
+
+### Import Data & Format Column Names
+
+```{r}
+tortoise <- read_csv("https://raw.githubusercontent.com/ckaoxvii/CIS-351-2026-Spring/refs/heads/main/tortoise.csv")
+
+tortoise <- tortoise |> 
+  clean_names() |> 
+  rename(
+    tortoise_id = tortoise,
+    latitude_n = lattitude_n
+  )
+
+names(tortoise)
+```
+
+```{r}
+patients <- tibble(
+  name = c("Anne", "Mark", "Sarah", "Davis", "Max", "Derek", "Tina"),
+  deceased = c(FALSE, TRUE, NA, TRUE, NA, FALSE, TRUE),
+  date = c(2005, 2010, NA, 2020, 2010, NA, NA)
+)
+```
+
+## Refactoring Data
+
+:::{.callout-note icon='false'}
+## Example 0.
+
+Refactor the penguins data frame to ensure that the values are consistent.
+
+```{r}
+
+```
+:::
+
+## Summarizing Data
+
+`summarize()` (or `summarise()`, if you prefer the King's English) is used to create a new data frame containing summary values of your choice. The syntax for `summarize()` is
+
+```r
+summarize(
+  .data,
+  ...,
+  .by = NULL
+)
+```
+
+:::{.callout-note icon='false'}
+## Example 1.
+
+Using the `penguins` data set, use `summarize()` to calculate the following:
+
+a. the mean flipper length of all penguins.
+b. the mean flipper length of all penguins, by species.
+c. the mean flipper length of all penguins, by species and sex.
+
+_Solutions._
+
+a. The mean flipper length of all penguins.
+
+```{r}
+```
+
+b. The mean flipper length of all penguins, by species.
+
+```{r}
+```
+
+c. The mean flipper length of all penguins, by species and sex.
+
+```{r}
+```
+:::
+
+:::{.callout-tip icon='false'}
+## Exercise 1.
+
+Using the `tortoise` data set, calculate the following:
+
+a. The mean and standard deviation of tortoise mass.
+b. The mean and standard deviation of tortoise mass, by site.
+c. The mean and standard deviation of tortoise mass, by site and class.
+
+_Solutions._
+
+a.
+```{r}
+```
+
+b.
+```{r}
+```
+
+c.
+```{r}
+```
+:::
+
+## The `{tinytable}` Package
+
+The `{tinytable}` package provides functions to format data frame output.
+
+:::{.callout-note icon='false'}
+## Example 2.
+
+Format the tables from Example 1 using `tt()` from `{tinytable}`.
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+:::
+
+:::{.callout-tip icon='false'}
+## Exercise 2. 
+
+Repeat Example 2 using the summary tables from Exercise 1.
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+:::
