@@ -1,0 +1,166 @@
+---
+title: "Data Visualization in R"
+subtitle: "Histogram and Bar Plot"
+date: "04/01/2026"
+author: ""
+format: 
+  html:
+    embed-resources: true
+    code-overflow: wrap
+execute:
+  error: true
+---
+
+```{r}
+library(tidyverse)
+
+library(janitor)
+
+library(readxl)
+
+library(palmerpenguins)
+```
+
+### Import Data & Format Column Names
+
+```{r}
+tortoise <- read_csv("https://raw.githubusercontent.com/ckaoxvii/CIS-351-2026-Spring/refs/heads/main/tortoise.csv")
+
+tortoise <- tortoise |> 
+  clean_names() |> 
+  rename(
+    tortoise_id = tortoise,
+    latitude_n = lattitude_n
+  )
+
+names(tortoise)
+```
+
+```{r}
+tortoise_count <- tibble(
+  site = c('Dune', 'Peninsula'),
+  'Juvenile' = c(4, 4),
+  'Subadult' = c(6, 5),
+  'Adult' = c(5, 5)
+)
+
+tortoise_count
+```
+
+```{r}
+datasaurus_dozen <- read_csv("https://raw.githubusercontent.com/ckaoxvii/CIS-351-2026-Spring/refs/heads/main/datasaurus_dozen.csv") |> 
+  rename(shape = dataset)
+```
+
+### Why Data Visualization?
+
+Run the following code chunk. What can you say about the data by `shape`?
+
+```{r}
+names(datasaurus_dozen)
+
+datasaurus_sum <- datasaurus_dozen |> 
+  summarize(
+    x_mean = round(mean(x, na.rm = TRUE), 2),
+    y_mean = round(mean(y, na.rm = TRUE), 2),
+    x_sd = round(sd(x, na.rm = TRUE), 2),
+    y_sd = round(sd(y, na.rm = TRUE), 2),
+    .by = shape
+  )
+
+datasaurus_sum
+```
+
+```{r}
+datasaurus_dozen |> 
+  ggplot(aes(x = x, y = y, color = shape))+
+    geom_point() +
+    theme_void() +
+    theme(legend.position = "none")+
+    facet_wrap(~shape, ncol = 3)
+```
+
+### Histograms
+
+#### Histograms in Base R
+
+:::{.callout-note icon='false'}
+## Example 1.
+
+Plot the distribution of the penguins' body mass in base R.
+
+```{r}
+```
+:::
+
+:::{.callout-tip icon='false'}
+## Exercise 1.
+
+Plot the distribution of the penguins' flipper length in base R.
+
+```{r}
+```
+:::
+
+#### Histogram in `{ggplot2}`
+
+:::{.callout-note icon='false'}
+## Example 2.
+
+Plot the distribution of the penguins' body mass using `{ggplot2}`.
+
+```{r}
+```
+:::
+
+:::{.callout-tip icon='false'}
+## Exercise 2.
+
+Plot the distribution of the penguins' flipper length using `{ggplot2}`.
+
+```{r}
+```
+:::
+
+### Bar Plots
+
+#### Bar Plots in Base R
+
+:::{.callout-note icon='false'}
+## Example 3.
+
+Create a bar plot in base R that shows the count of penguins by species.
+
+```{r}
+```
+:::
+
+
+:::{.callout-note icon='false'}
+## Exercise 3.
+
+Create a bar plot in base R that shows the count of penguins by island.
+
+```{r}
+```
+:::
+
+#### Bar Plots Using `{ggplot2}`
+
+:::{.callout-note icon='false'}
+## Example 4.
+
+Create a bar plot using `{ggplot2}` that shows the count of penguins by species.
+
+```{r}
+```
+:::
+
+:::{.callout-note icon='false'}
+## Exercise 4.
+
+Create a bar plot using `{ggplot2}` that shows the count of penguins by island.
+
+```{r}
+```
+:::
