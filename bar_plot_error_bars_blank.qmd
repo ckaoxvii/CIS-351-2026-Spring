@@ -1,0 +1,136 @@
+---
+title: "Data Visualization in R"
+subtitle: "Barplot with Error Bars"
+author: ""
+format: 
+  html:
+    embed-resources: true
+    code-overflow: wrap
+execute:
+  error: true
+---
+
+```{r}
+library(tidyverse)
+
+library(janitor)
+
+library(readxl)
+
+library(palmerpenguins)
+```
+
+### Import Data & Format Column Names
+
+```{r}
+tortoise <- read_csv("https://raw.githubusercontent.com/ckaoxvii/CIS-351-2026-Spring/refs/heads/main/tortoise.csv")
+
+tortoise <- tortoise |> 
+  clean_names() |> 
+  rename(
+    tortoise_id = tortoise,
+    latitude_n = lattitude_n
+  )
+
+names(tortoise)
+```
+
+```{r}
+tortoise_count <- tibble(
+  site = c('Dune', 'Peninsula'),
+  'Juvenile' = c(4, 4),
+  'Subadult' = c(6, 5),
+  'Adult' = c(5, 5)
+)
+
+tortoise_count
+```
+
+### Barplot with Error Bars
+
+Barplot with error bars provides how precise a measurement is for an aggregated variable such as the mean value of a variable with distinct subgroups.
+
+:::{.callout-note icon='false'}
+## Example 1.
+
+Plot the mean body mass of the penguins by species and add the error bars to each bar.
+
+_Solution._
+
+```{r}
+penguins_bm_sum <- penguins |> 
+  summarize(
+  )
+
+penguins_bm_sum
+```
+
+```{r}
+plot_bm_bar <- penguins_bm_sum |> 
+  ggplot() +
+  geom_bar(
+  ) +
+  geom_errorbar(
+  )
+
+plot_bm_bar
+```
+:::
+
+:::{.callout-tip icon='false'}
+## Exercise 1.
+
+_Solution._
+
+```{r}
+
+```
+:::
+
+### Scatter Plots
+
+:::{.callout-note icon='false'}
+## Example 2.
+
+Make a scatter plot of the penguins' body mass vs flipper length.
+
+_Solution._
+
+**Method 1.** Base R.
+
+```{r}
+plot_bm_fl <- plot(
+)
+
+plot_bm_fl
+
+bm_fl_model <- lm()
+
+abline()
+```
+
+**Method 2.** `{ggplot2}`
+
+```{r}
+plot_bm_fl_2 <- penguins |> 
+  ggplot(aes()) +
+  geom_point() +
+  geom_smooth()
+
+plot_bm_fl_2
+```
+:::
+
+:::{.callout-tip icon='false'}
+## Repeat Example 2 with penguins' bill length and bill depth.
+
+_Solutions._
+
+**Method 1.** Base R.
+
+```{r}
+
+```
+
+**Method 2.** `{ggplot2}`
+:::
