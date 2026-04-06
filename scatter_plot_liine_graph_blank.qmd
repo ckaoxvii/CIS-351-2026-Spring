@@ -1,0 +1,122 @@
+---
+title: "Data Visualization in R"
+subtitle: "Scatter Plots & Line Graphs"
+author: ""
+format: 
+  html:
+    embed-resources: true
+    code-overflow: wrap
+execute:
+  error: true
+---
+
+```{r}
+library(tidyverse)
+
+library(janitor)
+
+library(readxl)
+
+library(palmerpenguins)
+
+library(ggpubr)
+```
+
+### Import Data & Format Column Names
+
+```{r}
+tortoise <- read_csv("https://raw.githubusercontent.com/ckaoxvii/CIS-351-2026-Spring/refs/heads/main/tortoise.csv")
+
+tortoise <- tortoise |> 
+  clean_names() |> 
+  rename(
+    tortoise_id = tortoise,
+    latitude_n = lattitude_n
+  )
+
+names(tortoise)
+```
+
+```{r}
+tortoise_count <- tibble(
+  site = c('Dune', 'Peninsula'),
+  'Juvenile' = c(4, 4),
+  'Subadult' = c(6, 5),
+  'Adult' = c(5, 5)
+)
+
+tortoise_count
+```
+
+## Adding Values to Scatter Plots
+
+:::{.callout-note icon='false'}
+## Example 1 
+
+Add the correlation coefficient, the regression-line equation, and the $p$-value to the scatter plot of penguins' body mass versus flipper length.
+
+_Solution._ We will use the `ggscatter()` function from `{ggpubr}` package.
+
+```{r}
+```
+:::
+
+:::{.callout-tip icon='false'}
+## Exercise 1.
+
+Repeat Example 1 with a scatter plot of penguins' bill depth and bill length.
+
+```{r}
+
+```
+:::
+
+## Box Plots
+
+A box plot is a graphical method for visualizing the distribution of a numeric variable across different groups.
+
+:::{.callout-note icon='false'}
+## Example 2.
+
+a. Create a box plot of penguins' body mass by species.
+b. Create a box plot of penguins' body mass by species where the box is colored by species.
+
+_Solutions._
+
+a. 
+```{r}
+```
+
+b. 
+```{r}
+```
+:::
+
+:::{.callout-tip icon='false'}
+## Exercise 2. 
+
+Repeat Example 2 for penguins' flipper length.
+:::
+
+### Grouped Box Plots
+
+:::{.callout-note icon='false'}
+## Example 3.
+
+Create a grouped box plot for the penguins' body mass by species and grouped by sex.
+
+```{r}
+```
+
+```{r}
+```
+
+```{r}
+```
+:::
+
+:::{.callout-tip icon='false'}
+## Exercise 3.
+
+Repeat Example 3 with penguins' flipper length.
+:::
