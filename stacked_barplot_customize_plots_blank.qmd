@@ -1,0 +1,93 @@
+---
+title: "Data Visualization in R"
+subtitle: "Stacked Bar Plots and Customizing Plots"
+author: ""
+format: 
+  html:
+    embed-resources: true
+    code-overflow: wrap
+execute:
+  error: true
+---
+
+```{r}
+library(tidyverse)
+
+library(janitor)
+
+library(readxl)
+
+library(palmerpenguins)
+
+library(ggpubr)
+```
+
+### Import Data & Format Column Names
+
+```{r}
+tortoise <- read_csv("https://raw.githubusercontent.com/ckaoxvii/CIS-351-2026-Spring/refs/heads/main/tortoise.csv")
+
+tortoise <- tortoise |> 
+  clean_names() |> 
+  rename(
+    tortoise_id = tortoise,
+    latitude_n = lattitude_n
+  )
+
+names(tortoise)
+```
+
+```{r}
+tortoise_count <- tibble(
+  site = c('Dune', 'Peninsula'),
+  'Juvenile' = c(4, 4),
+  'Subadult' = c(6, 5),
+  'Adult' = c(5, 5)
+)
+
+tortoise_count
+```
+
+## Stacked Bar Plot
+
+:::{.callout-note icon='false'}
+## Example 1.
+
+Create a stacked bar plot of penguins' sex by species.
+
+_Solution._
+
+```{r}
+```
+:::
+
+:::{.callout-note icon='false'}
+## Example 2.
+
+Create a stacked bar plot of penguins' species by island.
+
+_Solution._
+
+```{r}
+```
+:::
+
+### Customize Plots
+
+:::{.callout-note icon='false'}
+## Example 3.
+
+Create a scatter plot of penguins' body mass vs flipper length. Change the background theme and axis labels.
+
+```{r}
+```
+:::
+
+:::{.callout-note icon='false'}
+## Example 4.
+
+Repeat Example 1, but change the color of the bars.
+
+```{r}
+```
+:::
