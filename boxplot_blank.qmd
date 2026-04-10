@@ -1,0 +1,41 @@
+---
+title: "Data Visualization in R"
+subtitle: "Boxplot"
+author: ""
+format: 
+  html:
+    embed-resources: true
+    code-overflow: wrap
+execute:
+  error: true
+---
+
+```{r}
+library(tidyverse)
+
+library(janitor)
+
+library(readxl)
+
+library(palmerpenguins)
+
+library(ggpubr)
+```
+
+:::{.callout-note icon='false'}
+## Example 1.
+
+a. Create a boxplot of penguins' body mass.
+b. Create a boxplot of penguins' body mass by species.
+
+_Solutions._
+
+a. 
+
+```{r}
+```
+
+b. 
+```{r}
+```
+:::
