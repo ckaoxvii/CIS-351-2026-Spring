@@ -1,0 +1,91 @@
+---
+title: "Statistical Tests in R"
+subtitle: "$t$-Test and ANOVA"
+author: ""
+format: 
+  html:
+    embed-resources: true
+    code-overflow: wrap
+execute:
+  error: true
+---
+
+```{r}
+library(tidyverse)
+
+library(janitor)
+
+library(readxl)
+
+library(palmerpenguins)
+
+library(ggpubr)
+```
+
+## One-Sample $t$-Test
+
+A one-sample $t$-test is a hypothesis test used to determine whether a sample mean differs from a population mean.
+
+:::{.callout-note icon='false'}
+## Example 1.
+
+Conduct a one-sample $t$-test to determine whether the mean body mass of the chinstrap penguins is the same as the mean body mass of all penguins. Use $\alpha = 0.5$ as the significance level.
+
+_Solution._
+
+First we need to know what the mean body mass of all penguins:
+
+```{r}
+```
+
+Our hypotheses are
+
+* $H_0: $
+* $H_a: $
+
+```{r}
+```
+
+:::
+
+By default, the `t.test` function uses a two-sided alternative hypothesis. We can change this using the optional argument `alternative = "less"` or `alternative = "greater"`.
+
+:::{.callout-note icon='false'}
+## Example 2.
+
+Conduct a two-sample $t$-test to determine whether the gentoo penguins' mean body mass is greater than the mean body mass of all penguins. Use $\alpha = 0.1$.
+
+_Solution._
+
+The hypotheses are:
+
+* $H_0: $
+* $H_a: $
+
+```{r}
+```
+
+:::
+
+## Two-Sample $t$-Test
+
+A two-sample $t$-test is a hypothesis test used to determine whether the means of two independent populations are significantly different based on sample data. 
+
+:::{.callout-note icon='false'}
+## Example 3.
+
+Conduct a two-sample $t$-test to determine whether the mean body mass of chinstrap and adelie penguins are different.
+
+_Solution._
+
+Let $\mu_c$ and $\mu_a$ to denote the mean body mass of the chinstrap and adelie penguins, respectively. The hypotheses are
+
+* $H_0: $
+* $H_a: $
+
+```{r}
+```
+
+```{r}
+```
+:::
