@@ -1,0 +1,84 @@
+---
+title: "Statistical Tests in R"
+subtitle: "ANOVA, Rank Sum, Kruskal-Wallis"
+author: ""
+format: 
+  html:
+    embed-resources: true
+    code-overflow: wrap
+execute:
+  error: true
+---
+
+```{r}
+#| message: false
+ 
+library(tidyverse)
+
+library(janitor)
+
+library(readxl)
+
+library(palmerpenguins)
+
+library(ggpubr)
+```
+
+## ANOVA
+
+ANOVA (Analysis of Variance) is a statistical test used to compare the means of three or more groups. It helps determine if there are any statistically significant differences between the means of the groups.
+
+The null hypothesis (H0) for ANOVA is that all group means are equal, while the alternative hypothesis (H1) is that at least one group mean is different.
+
+To perform ANOVA in R, you can use the `aov()` function. 
+
+:::{.callout-note icon='false'}
+## Example 1.
+
+Perform ANOVA on the `penguins` dataset to compare the body mass of different species of penguins.
+
+_Solution:_
+
+```{r}
+
+```
+:::
+
+## Rank Sum Test (Mann-Whitney U Test)
+
+The Rank Sum Test, also known as the Mann-Whitney U Test, is a non-parametric test used to compare the distributions of two independent groups. It is an alternative to the t-test when the assumptions of normality are not met.
+
+The null hypothesis (H0) for the Rank Sum Test is that the distributions of the two groups are the same, while the alternative hypothesis (H1) is that the distributions are different.
+
+To perform the Rank Sum Test in R, you can use the `wilcox.test()` function.
+
+:::{.callout-note icon='false'}
+## Example 2.
+
+Perform the Rank Sum Test to compare the body mass of Adelie and Gentoo penguins.
+
+_Solution:_
+
+```{r}
+
+```
+:::
+
+## Kruskal-Wallis Test
+
+The Kruskal-Wallis Test is a non-parametric test used to compare the distributions of three or more independent groups. It is an alternative to ANOVA when the assumptions of normality are not met.
+
+The null hypothesis (H0) for the Kruskal-Wallis Test is that the distributions of all groups are the same, while the alternative hypothesis (H1) is that at least one group distribution is different.
+
+To perform the Kruskal-Wallis Test in R, you can use the `kruskal.test()` function.
+
+:::{.callout-note icon='false'}
+## Example 3.
+
+Perform the Kruskal-Wallis Test to compare the body mass of all three species of penguins.
+
+_Solution:_
+
+```{r}
+
+```
