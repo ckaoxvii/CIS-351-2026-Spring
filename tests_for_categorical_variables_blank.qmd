@@ -1,0 +1,121 @@
+---
+title: "Statistical Tests in R"
+subtitle: "Tests for Categorial Data"
+author: ""
+format: 
+  html:
+    embed-resources: true
+    code-overflow: wrap
+execute:
+  error: true
+---
+
+```{r}
+#| message: false
+ 
+library(tidyverse)
+
+library(janitor)
+
+library(readxl)
+
+library(palmerpenguins)
+
+library(ggpubr)
+```
+
+## Chi-Square Test of Independence
+
+The chi-square test of independence is used to determine if there is a significant association between two categorical variables. It compares the observed frequencies in each category to the frequencies we would expect if there were no association between the variables.
+
+The hypotheses for the chi-square test of independence are:
+
+* $H_0$: There is no association between the two categorical variables (knowing the value of one variable does not provide any information about the other variable).
+* $H_a$: There is an association between the two categorical variables (knowing the value of one variable provides information about the other variable).
+
+:::{.callout-note icon="false"}
+## Example 1.
+
+Use the chi-square test of independence to determine if there is an association between penguins' species and their body mass. 
+
+_Solution._
+
+The hypotheses for this test are:
+
+* $H_0$: There is no association between penguins' species and their body mass
+* $H_a$: There is an association between penguins' species and their body mass
+
+The body mass variable is a continuous variable, so we need to categorize it before we can perform the chi-square test of independence. We will use the following thresholds to categorize body mass:
+
+* Light: if the body mass is in the bottom 25% of the data
+* Medium: if the body mass is in the middle 50% of the data
+* Heavy: if the body mass is in the top 25% of the data
+
+**Step 1.** Create a new variable `body_mass_category` in the `penguins` dataset that categorizes body mass into "Light", "Medium", and "Heavy" based on the thresholds defined above.
+```{r}
+```
+
+**Step 2.** Create a contingency table of the `species` and `body_mass_category` variables. There are mutliple ways of doing this, the easiest one is to use the (base R) `table()` function.
+
+```{r}
+```
+
+**Step 3.** Create a stacked bar plot to visualize the relationship between `species` and `body_mass_category`.
+
+```{r}
+```
+
+You can also use an unstacked bar plot to visualize the same relationship between `species` and `body_mass_category`.
+
+```{r}
+```
+
+**Step 4.** Perform the chi-square test of independence using the `chisq.test()` function.
+
+```{r}
+```
+
+**Step 5.** Interpret the results of the chi-square test of independence.
+
+
+:::
+
+## Goodness-of-Fit Test
+
+The goodness-of-fit test is used to determine if a sample data matches a population with a specific distribution. It compares the observed frequencies in each category to the frequencies we would expect if the data followed the specified distribution.
+
+The hypotheses for the goodness-of-fit test are:
+* $H_0$: The observed data follows the specified distribution.
+* $H_a$: The observed data does not follow the specified distribution.
+
+:::{.callout-note icon="false"}
+## Example 2.
+
+Use the goodness-of-fit test to determine if the distribution of penguins' species in the `penguins` dataset follows a uniform distribution (i.e., each species is equally represented).
+
+_Solution._
+
+The hypotheses for this test are:
+
+* $H_0$: The distribution of penguins' species follows a uniform distribution.
+* $H_a$: The distribution of penguins' species does not follow a uniform distribution.
+
+**Step 1.** Create a table of the `species` variable to get the observed frequencies of each species.
+
+```{r}
+```
+
+**Step 2.** Create a bar plot to visualize the distribution of penguins' species.
+
+```{r}
+```
+
+**Step 3.** Perform the goodness-of-fit test using the `chisq.test()` function. Since we are testing against a uniform distribution, we need to specify the expected probabilities for each category (in this case, each species should have an equal probability of 1/3).
+
+```{r}
+```
+
+**Step 4.** Interpret the results of the goodness-of-fit test.
+
+
+:::
